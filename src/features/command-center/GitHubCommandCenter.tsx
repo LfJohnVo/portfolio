@@ -76,7 +76,7 @@ export default function GitHubCommandCenter() {
           </div>
           
           {/* Terminal Content */}
-          <div className="p-6 sm:p-8 font-mono text-sm sm:text-base min-h-[420px] text-slate-300">
+          <div className="p-4 sm:p-6 lg:p-8 font-mono text-xs sm:text-sm md:text-base min-h-[300px] sm:min-h-[420px] text-slate-300">
             <AnimatePresence>
               {lines.map((line, i) => (
                 <motion.div
@@ -84,12 +84,12 @@ export default function GitHubCommandCenter() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
-                  className={`mb-2.5 ${getColor(line.type)} flex`}
+                  className={`mb-2 sm:mb-2.5 ${getColor(line.type)} flex`}
                 >
                   {line.type === "input" ? (
-                    <span className="text-slate-600 mr-3 select-none">$</span>
+                    <span className="text-slate-600 mr-2 sm:mr-3 select-none">$</span>
                   ) : (
-                    <span className="text-slate-700 mr-3 select-none">›</span>
+                    <span className="text-slate-700 mr-2 sm:mr-3 select-none">›</span>
                   )}
                   <span dangerouslySetInnerHTML={{ __html: line.text.replace(/(\[.*?\])/g, '<span class="opacity-80">$1</span>') }} />
                 </motion.div>
@@ -97,12 +97,12 @@ export default function GitHubCommandCenter() {
             </AnimatePresence>
             
             {/* Blinking Cursor */}
-            <div className="mt-4 flex">
-              <span className="text-slate-600 mr-3 select-none">$</span>
+            <div className="mt-3 sm:mt-4 flex">
+              <span className="text-slate-600 mr-2 sm:mr-3 select-none">$</span>
               <motion.div
                 animate={{ opacity: [1, 0] }}
                 transition={{ repeat: Infinity, duration: 0.8 }}
-                className="w-2.5 h-5 bg-indigo-400"
+                className="w-2 sm:w-2.5 h-4 sm:h-5 bg-indigo-400"
               />
             </div>
           </div>

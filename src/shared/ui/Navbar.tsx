@@ -47,6 +47,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <motion.a
             href="#"
+            aria-label="Scroll to top"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="text-lg font-bold tracking-tight relative group"
             whileHover={{ scale: 1.05 }}

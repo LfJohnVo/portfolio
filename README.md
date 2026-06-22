@@ -1,18 +1,34 @@
-# Developer Portfolio
+# Portfolio
 
-A bilingual (English/Spanish) interactive developer portfolio built with modern web technologies, showcasing experience, skills, and live GitHub repositories.
+A premium, highly interactive, and bilingual (English/Spanish) developer portfolio built for the modern web. It is designed to showcase high-level software engineering expertise, architectural patterns, leadership experience, and live integrations with the GitHub API.
 
-## 🚀 Tech Stack
+## Key Features
 
-- **Framework**: [Next.js](https://nextjs.org/) 14+ (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Dynamic GitHub Integrations:** Live fetching of repositories and dynamic language calculation using the GitHub REST API.
+- **Resilient Data Fetching:** Implements React `Suspense` and an asynchronous `GitHubStatsContainer` to stream server components seamlessly without layout shifts. Robust error handling (Rate Limiting fallbacks) built-in.
+- **Futuristic UI Components:** Includes a fully animated `GitHubCommandCenter` that mimics a terminal dashboard, and premium framer-motion micro-animations based on spring physics.
+- **SEO & Accessibility Ready:** Implements `JSON-LD` Person schema for rich search results, precise `h1-h3` heading hierarchy, and fully accessible ARIA-compliant navigation.
+- **Bilingual Core:** Built-in Context API (`LangContext`) to switch between English and Spanish without external routing or re-renders.
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) 14+ (App Router, Server Components)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Code Generation**: [Plop.js](https://plopjs.com/)
 
-## 🛠️ Local Setup & Installation
+## Architecture (Feature-Sliced Design)
 
-Follow these steps to mount the project correctly in your local environment.
+This project strictly adheres to a modular, scalable architecture inspired by Feature-Sliced Design to ensure enterprise-grade maintainability:
+
+- `src/app`: Next.js App Router entry points (`page.tsx`, `layout.tsx`).
+- `src/core`: Core application configurations, providers, and global contexts.
+- `src/features`: Domain-specific functional blocks (`hero`, `command-center`, `stats`, `experience`, `github`, etc.). Each feature is fully self-contained.
+- `src/infrastructure`: External integrations (`github.ts`) and static data (`portfolio.ts`). Edit `src/infrastructure/data/portfolio.ts` to instantly update the site content.
+- `src/shared`: Globally reusable UI components (`Button`, `Badge`, `Navbar`, `MotionWrapper`).
+
+## Local Setup & Installation
 
 ### Prerequisites
 
@@ -28,36 +44,21 @@ cd portfolio
 
 ### 2. Install dependencies
 
-Install the project dependencies using npm:
-
 ```bash
 npm install
 ```
 
 ### 3. Start the Development Server
 
-Start the local server in development mode:
-
 ```bash
 npm run dev
 ```
 
-Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
+Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
-## 🗂️ Clean Architecture (Feature-Sliced Design)
-
-This project uses a modular, scalable architecture inspired by Feature-Sliced Design to ensure maintainability:
-
-- `src/app`: Next.js App Router entry points (`page.tsx`, `layout.tsx`).
-- `src/core`: Core application configurations, providers, and global contexts (e.g., `LangContext` for EN/ES toggle).
-- `src/features`: Domain-specific functional blocks (`hero`, `about`, `experience`, `github`, `tech-stack`, etc.). Each feature is self-contained.
-- `src/infrastructure`: External integrations (GitHub API endpoints) and static data (`portfolio.ts`). Edit `src/infrastructure/data/portfolio.ts` to instantly update the site content.
-- `src/shared`: Globally reusable UI components (`Button`, `Badge`, `Card`, `Navbar`, `MotionWrapper`).
-
-## ⚙️ Component Generator
+## Component Generator
 
 To speed up development and ensure consistency, this project uses **Plop.js** to generate components.
-
 To create a new UI component in `src/shared/ui` with its respective interface, run:
 
 ```bash
@@ -66,11 +67,7 @@ npm run generate
 
 The CLI will prompt you for the component name and automatically scaffold the necessary files.
 
-## 🌐 Bilingual Support
-
-This portfolio has native English/Spanish support without relying on external routing logic. All translations are handled via `LangContext` and configured directly in `src/infrastructure/data/portfolio.ts`.
-
-## 📦 Building for Production
+## Building for Production
 
 To create an optimized production build, run:
 
@@ -86,4 +83,4 @@ npm start
 
 ---
 
-*Built with ❤️ by Jonathan Vargas.*
+*Architected and built by [Jonathan Vargas](https://github.com/LfJohnVo) for the modern web.*

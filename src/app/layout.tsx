@@ -82,6 +82,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Jonathan Vargas",
+    jobTitle: "Software Engineering Manager & AI Architect",
+    url: SITE_URL,
+    sameAs: [
+      "https://github.com/LfJohnVo",
+      "https://www.linkedin.com/in/lfjohnvo/",
+    ],
+    knowsAbout: ["Software Architecture", "Artificial Intelligence", "Next.js", "Laravel", "Go", "Leadership"],
+  };
+
   return (
     <html
       lang="en"
@@ -92,6 +105,10 @@ export default function RootLayout({
         <LangProvider>
           {children}
         </LangProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );

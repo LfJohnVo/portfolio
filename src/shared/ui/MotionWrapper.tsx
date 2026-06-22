@@ -19,7 +19,6 @@ export function FadeIn({
   children,
   delay = 0,
   direction = "up",
-  duration = 0.6,
   className,
 }: FadeInProps) {
   const initial = { opacity: 0, ...directionMap[direction] };
@@ -29,14 +28,20 @@ export function FadeIn({
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration, delay, ease: [0.25, 0.1, 0.25, 1] },
+      transition: { 
+        type: "spring", 
+        damping: 20, 
+        stiffness: 100, 
+        mass: 1, 
+        delay 
+      },
     },
   };
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-100px" }}
       variants={variants}
       className={className}
     >
@@ -52,13 +57,13 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   className,
-  staggerDelay = 0.1,
+  staggerDelay = 0.15,
 }: StaggerContainerProps) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-100px" }}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: staggerDelay } },
@@ -79,8 +84,12 @@ export function StaggerItem({
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+        hidden: { opacity: 0, y: 30 },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          transition: { type: "spring", damping: 20, stiffness: 100 } 
+        },
       }}
       className={className}
     >
