@@ -6,35 +6,48 @@ import About from "@/features/about/About";
 import TechStack from "@/features/tech-stack/TechStack";
 import Experience from "@/features/experience/Experience";
 import GitHubRepos from "@/features/github/GitHubRepos";
-import Stats from "@/features/stats/Stats";
+import GitHubStats from "@/features/stats/GitHubStats";
 import Contact from "@/features/contact/Contact";
 const GITHUB_USER = "LfJohnVo";
 async function getGitHubData(): Promise<{
   user: GitHubUser | null;
   totalStars: number;
+  topLanguages: string[];
 }> {
   try {
     const [user, repos] = await Promise.allSettled([
       fetchGitHubProfile(GITHUB_USER),
       fetchGitHubRepos(GITHUB_USER),
     ]);
+    const reposData = repos.status === "fulfilled" ? repos.value : [];
     const resolvedUser = user.status === "fulfilled" ? user.value : null;
-    const totalStars =
-      repos.status === "fulfilled"
-        ? repos.value.reduce((sum, r) => sum + r.stargazers_count, 0)
-        : 0;
-    return { user: resolvedUser, totalStars };
+    
+    const totalStars = reposData.reduce((sum, r) => sum + r.stargazers_count, 0);
+
+    const languageCounts: Record<string, number> = {};
+    reposData.forEach((repo) => {
+      if (repo.language) {
+        languageCounts[repo.language] = (languageCounts[repo.language] || 0) + 1;
+      }
+    });
+
+    const topLanguages = Object.entries(languageCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([lang]) => lang);
+
+    return { user: resolvedUser, totalStars, topLanguages };
   } catch {
-    return { user: null, totalStars: 0 };
+    return { user: null, totalStars: 0, topLanguages: [] };
   }
 }
 export default async function HomePage() {
-  const { user, totalStars } = await getGitHubData();
+  const { user, totalStars, topLanguages } = await getGitHubData();
   return (
     <main>
       <Navbar />
       <Hero />
-      <Stats user={user} totalStars={totalStars} />
+      <GitHubStats user={user} totalStars={totalStars} topLanguages={topLanguages} />
       <About />
       <Experience />
       <TechStack />
