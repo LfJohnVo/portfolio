@@ -180,7 +180,7 @@ export const LABELS = {
     about: { en: "About", es: "Acerca de" },
     stack: { en: "Stack", es: "Stack" },
     experience: { en: "Experience", es: "Experiencia" },
-    projects: { en: "Projects", es: "Proyectos" },
+
     repos: { en: "Repos", es: "Repos" },
     contact: { en: "Contact", es: "Contacto" },
   },
@@ -214,15 +214,7 @@ export const LABELS = {
       es: "Una selección de las tecnologías que uso para diseñar, construir y entregar software.",
     },
   },
-  projects: {
-    badge: { en: "Featured Work", es: "Proyectos Destacados" },
-    title: { en: "Projects", es: "Proyectos" },
-    subtitle: {
-      en: "A selection of projects that showcase my technical range and problem-solving approach.",
-      es: "Una selección de proyectos que demuestran mi amplitud técnica y enfoque de resolución de problemas.",
-    },
-    viewAll: { en: "View all on GitHub →", es: "Ver todos en GitHub →" },
-  },
+
   repos: {
     badge: { en: "Open Source", es: "Código Abierto" },
     title: { en: "GitHub Repositories", es: "Repositorios de GitHub" },
@@ -369,90 +361,7 @@ export const TECH_STACK: TechCategory[] = [
     ],
   },
 ];
-export interface Project {
-  id: string;
-  name: string;
-  description: { en: string; es: string };
-  tags: string[];
-  github: string;
-  demo?: string;
-  featured?: boolean;
-  language?: string;
-}
-export const PROJECTS: Project[] = [
-  {
-    id: "agente-mcp-postgres",
-    name: "Agente MCP PostgreSQL",
-    description: {
-      en: "AI agent with MCP (Model Context Protocol) integration for PostgreSQL. Automates database reporting and analysis using LLM pipelines, LangChain, and structured tool calls.",
-      es: "Agente de IA con integración MCP (Model Context Protocol) para PostgreSQL. Automatiza reportes y análisis de bases de datos usando pipelines LLM, LangChain y llamadas a herramientas estructuradas.",
-    },
-    tags: ["Python", "LangChain", "PostgreSQL", "MCP", "AI Agents"],
-    github: "https://github.com/LfJohnVo",
-    featured: true,
-    language: "Python",
-  },
-  {
-    id: "laravel-api-boilerplate",
-    name: "Laravel API Boilerplate",
-    description: {
-      en: "Production-ready Laravel REST API boilerplate with JWT authentication, role-based access control, versioned API routing, and Docker setup.",
-      es: "Boilerplate de API REST Laravel listo para producción con autenticación JWT, control de acceso por roles, rutas versionadas y configuración Docker.",
-    },
-    tags: ["Laravel", "PHP", "REST API", "Docker", "JWT"],
-    github: "https://github.com/LfJohnVo",
-    featured: true,
-    language: "PHP",
-  },
-  {
-    id: "go-microservices",
-    name: "Go Microservices",
-    description: {
-      en: "Cloud-native microservices system written in Go. Features gRPC communication, event-driven messaging with Kafka, distributed tracing, and Kubernetes deployment manifests.",
-      es: "Sistema de microservicios cloud-native escrito en Go. Incluye comunicación gRPC, mensajería orientada a eventos con Kafka, rastreo distribuido y manifiestos de despliegue en Kubernetes.",
-    },
-    tags: ["Go", "gRPC", "Kafka", "Kubernetes", "Microservices"],
-    github: "https://github.com/LfJohnVo",
-    featured: true,
-    language: "Go",
-  },
-  {
-    id: "nextjs-dashboard",
-    name: "Next.js Dashboard",
-    description: {
-      en: "Enterprise analytics dashboard built with Next.js App Router, featuring real-time charts, role-based views, SSR data fetching, and beautiful responsive UI.",
-      es: "Dashboard de analíticas empresarial construido con Next.js App Router, con gráficas en tiempo real, vistas por roles, fetching SSR y UI responsiva.",
-    },
-    tags: ["Next.js", "TypeScript", "Tailwind", "Recharts", "React"],
-    github: "https://github.com/LfJohnVo",
-    featured: true,
-    language: "TypeScript",
-  },
-  {
-    id: "blockchain-contracts",
-    name: "Smart Contracts Suite",
-    description: {
-      en: "Solidity smart contracts for DeFi protocols: ERC-20/721 tokens, staking mechanisms, multi-sig wallets, and automated audit scripts.",
-      es: "Smart contracts en Solidity para protocolos DeFi: tokens ERC-20/721, mecanismos de staking, wallets multi-sig y scripts de auditoría automatizados.",
-    },
-    tags: ["Solidity", "Hardhat", "Ethereum", "DeFi", "Web3"],
-    github: "https://github.com/LfJohnVo",
-    featured: false,
-    language: "Solidity",
-  },
-  {
-    id: "devops-toolkit",
-    name: "DevOps Toolkit",
-    description: {
-      en: "Collection of CI/CD pipeline templates, Helm charts, Terraform modules, and shell scripts for rapid infrastructure provisioning on AWS and GCP.",
-      es: "Colección de plantillas de pipeline CI/CD, charts de Helm, módulos de Terraform y scripts shell para aprovisionar infraestructura rápidamente en AWS y GCP.",
-    },
-    tags: ["Terraform", "Helm", "AWS", "GCP", "GitHub Actions"],
-    github: "https://github.com/LfJohnVo",
-    featured: false,
-    language: "HCL",
-  },
-];
+
 export const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: "#3178c6",
   JavaScript: "#f1e05a",

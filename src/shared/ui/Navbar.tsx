@@ -11,7 +11,6 @@ export default function Navbar() {
     { label: t(LABELS.nav.about), href: "#about" },
     { label: t(LABELS.nav.experience), href: "#experience" },
     { label: t(LABELS.nav.stack), href: "#stack" },
-    { label: t(LABELS.nav.projects), href: "#projects" },
     { label: t(LABELS.nav.repos), href: "#repos" },
     { label: t(LABELS.nav.contact), href: "#contact" },
   ];

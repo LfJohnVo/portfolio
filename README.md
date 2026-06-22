@@ -1,14 +1,14 @@
 # Developer Portfolio
 
-A bilingual (English/Spanish) interactive developer portfolio built with modern web technologies, showcasing experience, projects, skills, and GitHub repositories.
+A bilingual (English/Spanish) interactive developer portfolio built with modern web technologies, showcasing experience, skills, and live GitHub repositories.
 
 ## 🚀 Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js](https://nextjs.org/) 14+ (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: Custom SVG
+- **Code Generation**: [Plop.js](https://plopjs.com/)
 
 ## 🛠️ Local Setup & Installation
 
@@ -34,16 +34,7 @@ Install the project dependencies using npm:
 npm install
 ```
 
-### 3. Add your Avatar Image
-
-The application expects an avatar image to exist in the `public` directory.
-
-1. Place your profile picture inside the `public/` folder.
-2. Rename the image exactly to `avatar.jpg`.
-
-_(Note: Without this image, the hero section avatar will show a broken link)_
-
-### 4. Start the Development Server
+### 3. Start the Development Server
 
 Start the local server in development mode:
 
@@ -53,17 +44,31 @@ npm run dev
 
 Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
-## 🗂️ Project Structure
+## 🗂️ Clean Architecture (Feature-Sliced Design)
 
-- `src/app`: Next.js App Router layout and pages.
-- `src/components`: Reusable UI components (`Hero`, `Navbar`, `Projects`, etc.).
-- `src/context`: React Context providers (like `LangContext` for EN/ES toggle).
-- `src/data`: All portfolio static data (profile info, projects, tech stack). Editing `src/data/portfolio.ts` will instantly update the site content.
-- `src/lib`: Helper functions and API integrations (e.g., GitHub fetcher).
+This project uses a modular, scalable architecture inspired by Feature-Sliced Design to ensure maintainability:
+
+- `src/app`: Next.js App Router entry points (`page.tsx`, `layout.tsx`).
+- `src/core`: Core application configurations, providers, and global contexts (e.g., `LangContext` for EN/ES toggle).
+- `src/features`: Domain-specific functional blocks (`hero`, `about`, `experience`, `github`, `tech-stack`, etc.). Each feature is self-contained.
+- `src/infrastructure`: External integrations (GitHub API endpoints) and static data (`portfolio.ts`). Edit `src/infrastructure/data/portfolio.ts` to instantly update the site content.
+- `src/shared`: Globally reusable UI components (`Button`, `Badge`, `Card`, `Navbar`, `MotionWrapper`).
+
+## ⚙️ Component Generator
+
+To speed up development and ensure consistency, this project uses **Plop.js** to generate components.
+
+To create a new UI component in `src/shared/ui` with its respective interface, run:
+
+```bash
+npm run generate
+```
+
+The CLI will prompt you for the component name and automatically scaffold the necessary files.
 
 ## 🌐 Bilingual Support
 
-This portfolio has native English/Spanish support without relying on external routing logic. All translations are handled via `LangContext` and configured directly in `src/data/portfolio.ts`.
+This portfolio has native English/Spanish support without relying on external routing logic. All translations are handled via `LangContext` and configured directly in `src/infrastructure/data/portfolio.ts`.
 
 ## 📦 Building for Production
 
@@ -76,9 +81,9 @@ npm run build
 After the build completes, you can start the production server:
 
 ```bash
-npm run start
+npm start
 ```
 
 ---
 
-_Built with ❤️ by Jonathan Vargas._
+*Built with ❤️ by Jonathan Vargas.*

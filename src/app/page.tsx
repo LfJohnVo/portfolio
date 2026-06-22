@@ -4,7 +4,6 @@ import Navbar from "@/shared/ui/Navbar";
 import Hero from "@/features/hero/Hero";
 import About from "@/features/about/About";
 import TechStack from "@/features/tech-stack/TechStack";
-import Projects from "@/features/projects/Projects";
 import Experience from "@/features/experience/Experience";
 import GitHubRepos from "@/features/github/GitHubRepos";
 import Stats from "@/features/stats/Stats";
@@ -39,7 +38,6 @@ export default async function HomePage() {
       <About />
       <Experience />
       <TechStack />
-      <Projects />
       <Suspense
         fallback={
           <div className="py-24 flex items-center justify-center">
