@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { Lang } from "@/data/portfolio";
+import type { Lang } from "@/infrastructure/data/portfolio";
 interface LangContextValue {
   lang: Lang;
   setLang: (l: Lang) => void;

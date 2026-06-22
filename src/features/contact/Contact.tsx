@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { PROFILE, LABELS } from "@/data/portfolio";
-import { useLang } from "@/context/LangContext";
-import { FadeIn } from "@/components/ui/MotionWrapper";
+import { PROFILE, LABELS } from "@/infrastructure/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { FadeIn } from "@/shared/ui/MotionWrapper";
 const SOCIAL_LINKS = [
   {
     id: "footer-github",

@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { GitHubRepo } from "@/lib/github";
-import { LANGUAGE_COLORS, LABELS } from "@/data/portfolio";
-import { useLang } from "@/context/LangContext";
-import { FadeIn } from "@/components/ui/MotionWrapper";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import type { GitHubRepo } from "@/infrastructure/api/github";
+import { LANGUAGE_COLORS, LABELS } from "@/infrastructure/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { FadeIn } from "@/shared/ui/MotionWrapper";
+import { SectionHeading } from "@/shared/ui/SectionHeading";
 const PAGE_SIZE = 12;
 type SortOption = "stars" | "updated" | "name";
 export default function GitHubRepos() {

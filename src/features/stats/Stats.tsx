@@ -1,9 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import type { GitHubUser } from "@/lib/github";
-import { LABELS } from "@/data/portfolio";
-import { useLang } from "@/context/LangContext";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
+import type { GitHubUser } from "@/infrastructure/api/github";
+import { LABELS } from "@/infrastructure/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/shared/ui/MotionWrapper";
 interface StatsProps {
   user: GitHubUser | null;
   totalStars: number;

@@ -1,8 +1,8 @@
 "use client";
-import { PROFILE, LABELS, CAREER_STATS } from "@/data/portfolio";
-import { useLang } from "@/context/LangContext";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PROFILE, LABELS, CAREER_STATS } from "@/infrastructure/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/shared/ui/MotionWrapper";
+import { SectionHeading } from "@/shared/ui/SectionHeading";
 export default function About() {
   const { lang, t } = useLang();
   return (

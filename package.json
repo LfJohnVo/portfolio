@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "generate": "plop"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "plop": "^4.0.5",
     "strip-comments": "^2.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"

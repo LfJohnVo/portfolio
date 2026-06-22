@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TECH_STACK, LABELS } from "@/data/portfolio";
-import { useLang } from "@/context/LangContext";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TECH_STACK, LABELS } from "@/infrastructure/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/shared/ui/MotionWrapper";
+import { SectionHeading } from "@/shared/ui/SectionHeading";
 export default function TechStack() {
   const { lang, t } = useLang();
   const [activeTab, setActiveTab] = useState(0);

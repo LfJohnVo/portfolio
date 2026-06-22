@@ -1,13 +1,14 @@
 import { Suspense } from "react";
-import { fetchGitHubProfile, fetchGitHubRepos, type GitHubUser } from "@/lib/github";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import TechStack from "@/components/TechStack";
-import Projects from "@/components/Projects";
-import GitHubRepos from "@/components/GitHubRepos";
-import Stats from "@/components/Stats";
-import Contact from "@/components/Contact";
+import { fetchGitHubProfile, fetchGitHubRepos, type GitHubUser } from "@/infrastructure/api/github";
+import Navbar from "@/shared/ui/Navbar";
+import Hero from "@/features/hero/Hero";
+import About from "@/features/about/About";
+import TechStack from "@/features/tech-stack/TechStack";
+import Projects from "@/features/projects/Projects";
+import Experience from "@/features/experience/Experience";
+import GitHubRepos from "@/features/github/GitHubRepos";
+import Stats from "@/features/stats/Stats";
+import Contact from "@/features/contact/Contact";
 const GITHUB_USER = "LfJohnVo";
 async function getGitHubData(): Promise<{
   user: GitHubUser | null;
@@ -36,6 +37,7 @@ export default async function HomePage() {
       <Hero />
       <Stats user={user} totalStars={totalStars} />
       <About />
+      <Experience />
       <TechStack />
       <Projects />
       <Suspense

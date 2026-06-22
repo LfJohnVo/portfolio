@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { PROFILE } from "@/data/portfolio";
-import { LangProvider } from "@/context/LangContext";
+import { PROFILE } from "@/infrastructure/data/portfolio";
+import { LangProvider } from "@/core/i18n/LangContext";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],

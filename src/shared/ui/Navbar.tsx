@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLang } from "@/context/LangContext";
-import { LABELS } from "@/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { LABELS } from "@/infrastructure/data/portfolio";
 export default function Navbar() {
   const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);

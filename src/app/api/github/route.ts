@@ -1,4 +1,4 @@
-import { fetchGitHubProfile, fetchGitHubRepos } from "@/lib/github";
+import { fetchGitHubProfile, fetchGitHubRepos } from "@/infrastructure/api/github";
 import { NextResponse } from "next/server";
 const GITHUB_USER = "LfJohnVo";
 export async function GET(request: Request) {

@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { PROFILE, LABELS } from "@/data/portfolio";
-import { useLang } from "@/context/LangContext";
+import { PROFILE, LABELS } from "@/infrastructure/data/portfolio";
+import { useLang } from "@/core/i18n/LangContext";
+import { Button } from "@/shared/ui/Button";
+import { Badge } from "@/shared/ui/Badge";
 function TypewriterBadge({ roles }: { roles: string[] }) {
   const [index, setIndex] = useState(0);
   useEffect(() => {
@@ -174,7 +176,10 @@ export default function Hero() {
             Vargas
           </motion.span>
         </motion.h1>
+        {/* Role badges - Typewriter cycling effect */}
         <TypewriterBadge roles={roles} />
+
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -183,58 +188,56 @@ export default function Hero() {
         >
           {PROFILE.tagline[lang]}
         </motion.p>
+
+        {/* Open to work badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1, type: "spring" }}
-          whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(52,211,153,0.4)" }}
-          className="mt-6 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold cursor-default"
         >
-          🌍 {PROFILE.openToWork[lang]}
+          <Badge variant="glow" className="mt-6 px-5 py-2 text-sm">
+            🌍 {PROFILE.openToWork[lang]}
+          </Badge>
         </motion.div>
+
+        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12"
         >
-          <motion.a
+          <Button
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
             id="hero-github-btn"
-            whileHover={{ scale: 1.05, y: -4, boxShadow: "0 10px 25px -5px rgba(99,102,241,0.5)" }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all"
+            variant="primary"
           >
             <GitHubIcon />
             {t(LABELS.hero.viewGithub)}
-          </motion.a>
-          <motion.a
+          </Button>
+          <Button
             href={PROFILE.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             id="hero-linkedin-btn"
-            whileHover={{ scale: 1.05, y: -4, boxShadow: "0 10px 25px -5px rgba(0,119,181,0.4)" }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-[#0077B5] bg-white/5 border border-[#0077B5]/40 hover:bg-[#0077B5]/10 hover:border-[#0077B5] transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(0,119,181,0.2)]"
+            variant="secondary"
           >
             <LinkedInIcon />
             LinkedIn
-          </motion.a>
-          <motion.a
+          </Button>
+          <Button
             href="#about"
-            onClick={(e) => {
+            onClick={(e: any) => {
               e.preventDefault();
               document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
             }}
             id="hero-scroll-btn"
-            whileHover={{ scale: 1.05, y: -4 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 transition-all backdrop-blur-sm"
+            variant="outline"
           >
             {t(LABELS.hero.explore)}
-          </motion.a>
+          </Button>
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}

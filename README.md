@@ -1,4 +1,4 @@
-# Jonathan Vargas - Developer Portfolio
+# Developer Portfolio
 
 A bilingual (English/Spanish) interactive developer portfolio built with modern web technologies, showcasing experience, projects, skills, and GitHub repositories.
 
@@ -37,10 +37,11 @@ npm install
 ### 3. Add your Avatar Image
 
 The application expects an avatar image to exist in the `public` directory.
+
 1. Place your profile picture inside the `public/` folder.
 2. Rename the image exactly to `avatar.jpg`.
 
-*(Note: Without this image, the hero section avatar will show a broken link)*
+_(Note: Without this image, the hero section avatar will show a broken link)_
 
 ### 4. Start the Development Server
 
@@ -79,4 +80,5 @@ npm run start
 ```
 
 ---
-*Built with ❤️ by Jonathan Vargas.*
+
+_Built with ❤️ by Jonathan Vargas._

@@ -1,0 +1,15 @@
+import React from 'react';
+
+interface {{pascalCase name}}Props {
+  className?: string;
+  // Add other props here
+}
+
+export function {{pascalCase name}}({ className = '' }: {{pascalCase name}}Props) {
+  return (
+    <div className={`relative ${className}`}>
+      {/* Component content */}
+      <p>{{pascalCase name}} Component</p>
+    </div>
+  );
+}
