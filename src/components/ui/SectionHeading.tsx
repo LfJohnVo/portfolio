@@ -1,5 +1,4 @@
 import { type ReactNode } from "react";
-
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
@@ -8,7 +7,6 @@ interface SectionHeadingProps {
   className?: string;
   align?: "left" | "center";
 }
-
 export function SectionHeading({
   title,
   subtitle,

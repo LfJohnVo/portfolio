@@ -1,16 +1,13 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { PROJECTS, LANGUAGE_COLORS, LABELS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
 export default function Projects() {
   const { lang, t } = useLang();
   const featured = PROJECTS.filter((p) => p.featured);
   const others = PROJECTS.filter((p) => !p.featured);
-
   return (
     <section id="projects" className="py-24 sm:py-32 bg-slate-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,8 +18,6 @@ export default function Projects() {
             subtitle={t(LABELS.projects.subtitle)}
           />
         </FadeIn>
-
-        {/* Featured projects */}
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8" staggerDelay={0.12}>
           {featured.map((project) => (
             <StaggerItem key={project.id}>
@@ -30,8 +25,6 @@ export default function Projects() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-
-        {/* Other projects */}
         {others.length > 0 && (
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" staggerDelay={0.08}>
             {others.map((project) => (
@@ -41,8 +34,6 @@ export default function Projects() {
             ))}
           </StaggerContainer>
         )}
-
-        {/* View all CTA */}
         <FadeIn delay={0.4} className="mt-12 text-center">
           <motion.a
             href="https://github.com/LfJohnVo"
@@ -60,7 +51,6 @@ export default function Projects() {
     </section>
   );
 }
-
 function ProjectCard({
   project,
   lang,
@@ -73,7 +63,6 @@ function ProjectCard({
   const langColor = project.language
     ? LANGUAGE_COLORS[project.language] ?? "#6b7280"
     : "#6b7280";
-
   return (
     <motion.div
       whileHover={{ y: -6 }}
@@ -81,11 +70,8 @@ function ProjectCard({
         featured ? "min-h-[220px]" : ""
       }`}
     >
-      {/* Gradient hover accent */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-indigo-500/5 to-emerald-500/5" />
-
       <div className="relative flex flex-col flex-1 gap-4">
-        {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-indigo-500/10">
@@ -105,11 +91,7 @@ function ProjectCard({
             <GitHubIcon className="w-4 h-4" />
           </a>
         </div>
-
-        {/* Description */}
         <p className="text-sm text-slate-400 leading-relaxed flex-1">{project.description[lang]}</p>
-
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-auto">
           {project.tags.slice(0, 4).map((tag) => (
             <span
@@ -120,8 +102,6 @@ function ProjectCard({
             </span>
           ))}
         </div>
-
-        {/* Language badge */}
         {project.language && (
           <div className="flex items-center gap-1.5 mt-2">
             <span
@@ -135,7 +115,6 @@ function ProjectCard({
     </motion.div>
   );
 }
-
 function FolderIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-none stroke-current stroke-2 ${className}`} aria-hidden="true">
@@ -143,7 +122,6 @@ function FolderIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">

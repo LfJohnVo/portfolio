@@ -1,13 +1,10 @@
 "use client";
-
 import { PROFILE, LABELS, CAREER_STATS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
 export default function About() {
   const { lang, t } = useLang();
-
   return (
     <section id="about" className="py-24 sm:py-32 bg-slate-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,9 +15,7 @@ export default function About() {
             subtitle={t(LABELS.about.subtitle)}
           />
         </FadeIn>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Text content */}
           <FadeIn direction="left">
             <div className="space-y-6">
               {PROFILE.bio[lang].map((paragraph, i) => (
@@ -52,8 +47,6 @@ export default function About() {
               </div>
             </div>
           </FadeIn>
-
-          {/* Highlights grid */}
           <FadeIn direction="right" delay={0.2}>
             <StaggerContainer
               className="grid grid-cols-1 sm:grid-cols-2 gap-4"
@@ -72,8 +65,6 @@ export default function About() {
             </StaggerContainer>
           </FadeIn>
         </div>
-
-        {/* Stats strip */}
         <FadeIn delay={0.4} className="mt-16">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {CAREER_STATS[lang].map((stat) => (
@@ -93,7 +84,6 @@ export default function About() {
     </section>
   );
 }
-
 function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">
@@ -101,7 +91,6 @@ function GitHubIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">

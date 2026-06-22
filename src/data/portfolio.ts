@@ -1,10 +1,4 @@
-// ============================================================
-// Centralized portfolio data — bilingual EN / ES
-// ============================================================
-
 export type Lang = "en" | "es";
-
-// ── Profile ─────────────────────────────────────────────────
 export const PROFILE = {
   name: "Jonathan Vargas",
   role: {
@@ -69,8 +63,6 @@ export const PROFILE = {
     ],
   },
 };
-
-// ── Career stats ─────────────────────────────────────────────
 export const CAREER_STATS = {
   en: [
     { value: "10+", label: "Years Experience" },
@@ -85,8 +77,6 @@ export const CAREER_STATS = {
     { value: "5+", label: "Stacks tecnológicos" },
   ],
 };
-
-// ── Work experience (LinkedIn-style) ────────────────────────
 export const EXPERIENCE = [
   {
     id: "esquitechs",
@@ -137,8 +127,6 @@ export const EXPERIENCE = [
     tags: ["PHP", "Laravel", "PostgreSQL", "REST APIs", "Linux"],
   },
 ];
-
-// ── Section labels (bilingual) ───────────────────────────────
 export const LABELS = {
   nav: {
     about: { en: "About", es: "Acerca de" },
@@ -233,19 +221,15 @@ export const LABELS = {
     stars: { en: "Total Stars", es: "Estrellas Totales" },
   },
 };
-
-// ── Tech stack ───────────────────────────────────────────────
 export interface TechItem {
   name: string;
   icon?: string;
 }
-
 export interface TechCategory {
   label: { en: string; es: string };
   emoji: string;
   items: TechItem[];
 }
-
 export const TECH_STACK: TechCategory[] = [
   {
     label: { en: "Frontend", es: "Frontend" },
@@ -318,8 +302,6 @@ export const TECH_STACK: TechCategory[] = [
     ],
   },
 ];
-
-// ── Projects ─────────────────────────────────────────────────
 export interface Project {
   id: string;
   name: string;
@@ -330,7 +312,6 @@ export interface Project {
   featured?: boolean;
   language?: string;
 }
-
 export const PROJECTS: Project[] = [
   {
     id: "agente-mcp-postgres",
@@ -405,8 +386,6 @@ export const PROJECTS: Project[] = [
     language: "HCL",
   },
 ];
-
-// ── Language colors ──────────────────────────────────────────
 export const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: "#3178c6",
   JavaScript: "#f1e05a",

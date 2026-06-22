@@ -1,17 +1,14 @@
 "use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TECH_STACK, LABELS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
 export default function TechStack() {
   const { lang, t } = useLang();
   const [activeTab, setActiveTab] = useState(0);
   const activeCategory = TECH_STACK[activeTab];
-
   return (
     <section id="stack" className="py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,8 +19,6 @@ export default function TechStack() {
             subtitle={t(LABELS.stack.subtitle)}
           />
         </FadeIn>
-
-        {/* Tab navigation */}
         <FadeIn delay={0.1}>
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {TECH_STACK.map((category, i) => (
@@ -43,8 +38,6 @@ export default function TechStack() {
             ))}
           </div>
         </FadeIn>
-
-        {/* Tab content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -74,8 +67,6 @@ export default function TechStack() {
             </StaggerContainer>
           </motion.div>
         </AnimatePresence>
-
-        {/* All categories quick overview */}
         <FadeIn delay={0.4} className="mt-20">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {TECH_STACK.map((category, i) => (

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { GitHubRepo } from "@/lib/github";
@@ -7,11 +6,8 @@ import { LANGUAGE_COLORS, LABELS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
 import { FadeIn } from "@/components/ui/MotionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
 const PAGE_SIZE = 12;
-
 type SortOption = "stars" | "updated" | "name";
-
 export default function GitHubRepos() {
   const { t } = useLang();
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
@@ -21,7 +17,6 @@ export default function GitHubRepos() {
   const [language, setLanguage] = useState("All");
   const [sort, setSort] = useState<SortOption>("updated");
   const [page, setPage] = useState(1);
-
   useEffect(() => {
     fetch("/api/github?type=repos")
       .then((r) => r.json())
@@ -34,15 +29,12 @@ export default function GitHubRepos() {
         setLoading(false);
       });
   }, []);
-
   const languages = useMemo(() => {
     const langs = new Set(repos.map((r) => r.language).filter(Boolean) as string[]);
     return ["All", ...Array.from(langs).sort()];
   }, [repos]);
-
   const filtered = useMemo(() => {
     let result = repos.filter((r) => !r.fork);
-
     if (search.trim()) {
       const q = search.toLowerCase();
       result = result.filter(
@@ -51,32 +43,25 @@ export default function GitHubRepos() {
           (r.description ?? "").toLowerCase().includes(q)
       );
     }
-
     if (language !== "All") {
       result = result.filter((r) => r.language === language);
     }
-
     result = [...result].sort((a, b) => {
       if (sort === "stars") return b.stargazers_count - a.stargazers_count;
       if (sort === "name") return a.name.localeCompare(b.name);
       return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
     });
-
     return result;
   }, [repos, search, language, sort]);
-
   const paginated = filtered.slice(0, page * PAGE_SIZE);
   const hasMore = paginated.length < filtered.length;
-
   const resetFilters = useCallback(() => {
     setSearch("");
     setLanguage("All");
     setSort("updated");
     setPage(1);
   }, []);
-
   useEffect(() => { setPage(1); }, [search, language, sort]);
-
   return (
     <section id="repos" className="py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,11 +72,8 @@ export default function GitHubRepos() {
             subtitle={t(LABELS.repos.subtitle)}
           />
         </FadeIn>
-
-        {/* Filters */}
         <FadeIn delay={0.1}>
           <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            {/* Search */}
             <div className="relative flex-1">
               <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
@@ -103,8 +85,6 @@ export default function GitHubRepos() {
                 className="w-full pl-9 pr-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 focus:bg-white/[0.06] transition-all"
               />
             </div>
-
-            {/* Language filter */}
             <select
               id="repo-language-filter"
               value={language}
@@ -117,8 +97,6 @@ export default function GitHubRepos() {
                 </option>
               ))}
             </select>
-
-            {/* Sort */}
             <select
               id="repo-sort"
               value={sort}
@@ -129,8 +107,6 @@ export default function GitHubRepos() {
               <option value="stars" className="bg-slate-900">{t(LABELS.repos.mostStars)}</option>
               <option value="name" className="bg-slate-900">{t(LABELS.repos.nameAZ)}</option>
             </select>
-
-            {/* Reset */}
             {(search || language !== "All" || sort !== "updated") && (
               <button
                 id="repo-reset-filters"
@@ -141,8 +117,6 @@ export default function GitHubRepos() {
               </button>
             )}
           </div>
-
-          {/* Result count */}
           {!loading && (
             <p className="text-sm text-slate-500 mb-6">
               {t(LABELS.repos.showing)} <span className="text-slate-300 font-medium">{paginated.length}</span> {t(LABELS.repos.of)}{" "}
@@ -150,8 +124,6 @@ export default function GitHubRepos() {
             </p>
           )}
         </FadeIn>
-
-        {/* Loading skeleton */}
         {loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 9 }).map((_, i) => (
@@ -162,15 +134,11 @@ export default function GitHubRepos() {
             ))}
           </div>
         )}
-
-        {/* Error */}
         {error && (
           <div className="text-center py-16">
             <p className="text-red-400">{error}</p>
           </div>
         )}
-
-        {/* Empty state */}
         {!loading && !error && filtered.length === 0 && (
           <div className="text-center py-16">
             <p className="text-slate-400">{t(LABELS.repos.noResults)}</p>
@@ -182,8 +150,6 @@ export default function GitHubRepos() {
             </button>
           </div>
         )}
-
-        {/* Repos grid */}
         {!loading && !error && filtered.length > 0 && (
           <>
             <motion.div
@@ -196,8 +162,6 @@ export default function GitHubRepos() {
                 ))}
               </AnimatePresence>
             </motion.div>
-
-            {/* Load more */}
             {hasMore && (
               <div className="mt-10 text-center">
                 <button
@@ -215,13 +179,11 @@ export default function GitHubRepos() {
     </section>
   );
 }
-
 function RepoCard({ repo, index }: { repo: GitHubRepo; index: number }) {
   const { t } = useLang();
   const langColor = repo.language
     ? LANGUAGE_COLORS[repo.language] ?? "#6b7280"
     : "#6b7280";
-
   return (
     <motion.a
       href={repo.html_url}
@@ -236,20 +198,15 @@ function RepoCard({ repo, index }: { repo: GitHubRepo; index: number }) {
       whileHover={{ y: -4 }}
       className="group flex flex-col gap-3 p-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.05] hover:border-indigo-500/20 transition-all"
     >
-      {/* Header */}
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors line-clamp-1">
           {repo.name}
         </h3>
         <ExternalLinkIcon className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 flex-shrink-0 mt-0.5 transition-colors" />
       </div>
-
-      {/* Description */}
       <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 flex-1">
         {repo.description ?? t(LABELS.repos.noDescription)}
       </p>
-
-      {/* Topics */}
       {repo.topics && repo.topics.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {repo.topics.slice(0, 3).map((topic) => (
@@ -262,8 +219,6 @@ function RepoCard({ repo, index }: { repo: GitHubRepo; index: number }) {
           ))}
         </div>
       )}
-
-      {/* Footer */}
       <div className="flex items-center gap-3 pt-1 border-t border-white/[0.05]">
         {repo.language && (
           <div className="flex items-center gap-1.5">
@@ -288,7 +243,6 @@ function RepoCard({ repo, index }: { repo: GitHubRepo; index: number }) {
     </motion.a>
   );
 }
-
 function SearchIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-none stroke-current stroke-2 ${className}`} aria-hidden="true">
@@ -297,7 +251,6 @@ function SearchIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function ExternalLinkIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-none stroke-current stroke-2 ${className}`} aria-hidden="true">
@@ -305,7 +258,6 @@ function ExternalLinkIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function StarIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">
@@ -313,7 +265,6 @@ function StarIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function ForkIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-none stroke-current stroke-2 ${className}`} aria-hidden="true">

@@ -1,22 +1,17 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { PROFILE, LABELS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
-
-// Typewriter cycling effect for roles
 function TypewriterBadge({ roles }: { roles: string[] }) {
   const [index, setIndex] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % roles.length);
     }, 3000);
     return () => clearInterval(interval);
   }, [roles]);
-
   return (
     <div className="flex justify-center h-12 mt-6 overflow-hidden">
       <AnimatePresence mode="wait">
@@ -34,26 +29,20 @@ function TypewriterBadge({ roles }: { roles: string[] }) {
     </div>
   );
 }
-
 export default function Hero() {
   const { lang, t } = useLang();
   const roles = PROFILE.rolesList[lang];
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
   return (
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated gradient background with neon/cyberpunk vibes */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-slate-950" />
-        
-        {/* Intense neon orbs with complex movement */}
         <motion.div
           animate={{ 
             scale: [1, 1.3, 1], 
@@ -85,8 +74,6 @@ export default function Hero() {
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 4 }}
           className="absolute -bottom-32 left-1/4 w-[50rem] h-[50rem] rounded-full bg-indigo-600/30 blur-[120px] mix-blend-screen"
         />
-        
-        {/* Dynamic Grid overlay */}
         <div
           className="absolute inset-0 opacity-[0.2]"
           style={{
@@ -96,8 +83,6 @@ export default function Hero() {
             WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)"
           }}
         />
-
-        {/* Floating Cyber Particles */}
         <div className="absolute inset-0 overflow-hidden perspective-[1000px]">
           {mounted && [...Array(30)].map((_, i) => (
             <motion.div
@@ -132,13 +117,11 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
       <motion.div 
         className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center"
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        {/* Location badge */}
         <motion.div
           initial={{ opacity: 0, y: -30, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -148,8 +131,6 @@ export default function Hero() {
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
           📍 {PROFILE.location}
         </motion.div>
-
-        {/* Avatar - Increased size and added neon effects */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
           animate={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -157,7 +138,6 @@ export default function Hero() {
           whileHover={{ scale: 1.05, rotateZ: 5, boxShadow: "0 0 60px rgba(99,102,241,0.8)" }}
           className="mx-auto mb-8 relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-[6px] border-indigo-500/50 shadow-[0_0_40px_rgba(99,102,241,0.6),inset_0_0_20px_rgba(99,102,241,0.5)] cursor-pointer group z-20 bg-slate-900 transition-shadow duration-500"
         >
-          {/* Animated border spin effect */}
           <motion.div 
             animate={{ rotate: 360 }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -173,8 +153,6 @@ export default function Hero() {
             />
           </div>
         </motion.div>
-
-        {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -196,11 +174,7 @@ export default function Hero() {
             Vargas
           </motion.span>
         </motion.h1>
-
-        {/* Role badges - Typewriter cycling effect */}
         <TypewriterBadge roles={roles} />
-
-        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -209,8 +183,6 @@ export default function Hero() {
         >
           {PROFILE.tagline[lang]}
         </motion.p>
-
-        {/* Open to work badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -220,8 +192,6 @@ export default function Hero() {
         >
           🌍 {PROFILE.openToWork[lang]}
         </motion.div>
-
-        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -266,8 +236,6 @@ export default function Hero() {
             {t(LABELS.hero.explore)}
           </motion.a>
         </motion.div>
-
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -286,7 +254,6 @@ export default function Hero() {
     </section>
   );
 }
-
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
@@ -294,7 +261,6 @@ function GitHubIcon() {
     </svg>
   );
 }
-
 function LinkedInIcon() {
   return (
     <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">

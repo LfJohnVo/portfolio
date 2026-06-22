@@ -13,7 +13,6 @@ export interface GitHubRepo {
   fork: boolean;
   visibility: string;
 }
-
 export interface GitHubUser {
   login: string;
   name: string;
@@ -27,7 +26,6 @@ export interface GitHubUser {
   blog: string | null;
   company: string | null;
 }
-
 export async function fetchGitHubProfile(username: string): Promise<GitHubUser> {
   const res = await fetch(`https://api.github.com/users/${username}`, {
     headers: {
@@ -36,14 +34,11 @@ export async function fetchGitHubProfile(username: string): Promise<GitHubUser> 
     },
     next: { revalidate: 3600 },
   });
-
   if (!res.ok) {
     throw new Error(`GitHub API error: ${res.status}`);
   }
-
   return res.json();
 }
-
 export async function fetchGitHubRepos(username: string): Promise<GitHubRepo[]> {
   const res = await fetch(
     `https://api.github.com/users/${username}/repos?per_page=100&sort=updated&type=owner`,
@@ -55,10 +50,8 @@ export async function fetchGitHubRepos(username: string): Promise<GitHubRepo[]> 
       next: { revalidate: 3600 },
     }
   );
-
   if (!res.ok) {
     throw new Error(`GitHub API error: ${res.status}`);
   }
-
   return res.json();
 }

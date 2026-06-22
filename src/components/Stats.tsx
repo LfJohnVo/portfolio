@@ -1,19 +1,15 @@
 "use client";
-
 import { motion } from "framer-motion";
 import type { GitHubUser } from "@/lib/github";
 import { LABELS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/MotionWrapper";
-
 interface StatsProps {
   user: GitHubUser | null;
   totalStars: number;
 }
-
 export default function Stats({ user, totalStars }: StatsProps) {
   const { t } = useLang();
-
   const stats = [
     {
       id: "stat-repos",
@@ -44,7 +40,6 @@ export default function Stats({ user, totalStars }: StatsProps) {
       color: "from-amber-500 to-amber-700",
     },
   ];
-
   return (
     <section id="stats" className="py-16 bg-slate-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,11 +52,10 @@ export default function Stats({ user, totalStars }: StatsProps) {
               rel="noopener noreferrer"
               className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
             >
-              @LfJohnVo →
+              →
             </a>
           </div>
         </FadeIn>
-
         <StaggerContainer className="grid grid-cols-2 sm:grid-cols-4 gap-4" staggerDelay={0.1}>
           {stats.map((stat) => (
             <StaggerItem key={stat.id}>

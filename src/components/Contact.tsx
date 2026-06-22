@@ -1,10 +1,8 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { PROFILE, LABELS } from "@/data/portfolio";
 import { useLang } from "@/context/LangContext";
 import { FadeIn } from "@/components/ui/MotionWrapper";
-
 const SOCIAL_LINKS = [
   {
     id: "footer-github",
@@ -27,23 +25,17 @@ const SOCIAL_LINKS = [
     ),
   },
 ];
-
 export default function Contact() {
   const { lang, t } = useLang();
-
   return (
     <footer id="contact" className="relative overflow-hidden border-t border-white/[0.07] bg-slate-950">
-      {/* Gradient accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-indigo-950/20 pointer-events-none" />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <FadeIn>
           <div className="text-center mb-12">
-            {/* Open to work badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium">
               {t(LABELS.contact.openToWork)}
             </div>
-
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               {lang === "en" ? (
                 <>
@@ -66,8 +58,6 @@ export default function Contact() {
             </p>
           </div>
         </FadeIn>
-
-        {/* Social links */}
         <FadeIn delay={0.15}>
           <div className="flex justify-center gap-4 mb-12">
             {SOCIAL_LINKS.map((link) => (
@@ -88,8 +78,6 @@ export default function Contact() {
             ))}
           </div>
         </FadeIn>
-
-        {/* Bottom bar */}
         <FadeIn delay={0.3}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.05]">
             <div className="text-sm text-slate-500">

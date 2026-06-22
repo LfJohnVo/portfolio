@@ -1,8 +1,6 @@
 "use client";
-
 import { motion, type Variants } from "framer-motion";
 import { type ReactNode } from "react";
-
 interface FadeInProps {
   children: ReactNode;
   delay?: number;
@@ -10,7 +8,6 @@ interface FadeInProps {
   duration?: number;
   className?: string;
 }
-
 const directionMap = {
   up: { y: 40, x: 0 },
   down: { y: -40, x: 0 },
@@ -18,7 +15,6 @@ const directionMap = {
   right: { x: -40, y: 0 },
   none: { x: 0, y: 0 },
 };
-
 export function FadeIn({
   children,
   delay = 0,
@@ -27,7 +23,6 @@ export function FadeIn({
   className,
 }: FadeInProps) {
   const initial = { opacity: 0, ...directionMap[direction] };
-
   const variants: Variants = {
     hidden: initial,
     visible: {
@@ -37,7 +32,6 @@ export function FadeIn({
       transition: { duration, delay, ease: [0.25, 0.1, 0.25, 1] },
     },
   };
-
   return (
     <motion.div
       initial="hidden"
@@ -50,13 +44,11 @@ export function FadeIn({
     </motion.div>
   );
 }
-
 interface StaggerContainerProps {
   children: ReactNode;
   className?: string;
   staggerDelay?: number;
 }
-
 export function StaggerContainer({
   children,
   className,
@@ -77,7 +69,6 @@ export function StaggerContainer({
     </motion.div>
   );
 }
-
 export function StaggerItem({
   children,
   className,

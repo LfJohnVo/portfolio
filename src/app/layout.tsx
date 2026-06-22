@@ -3,21 +3,17 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { PROFILE } from "@/data/portfolio";
 import { LangProvider } from "@/context/LangContext";
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
-
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
-
 const SITE_URL = "https://lfjohnvo.dev";
-
 export const metadata: Metadata = {
   title: {
     default: "Jonathan Vargas — Software Engineering Manager & Full Stack Developer",
@@ -76,13 +72,11 @@ export const metadata: Metadata = {
   },
   category: "technology",
 };
-
 export const viewport: Viewport = {
   themeColor: "#020817",
   width: "device-width",
   initialScale: 1,
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

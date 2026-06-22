@@ -1,15 +1,12 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "@/context/LangContext";
 import { LABELS } from "@/data/portfolio";
-
 export default function Navbar() {
   const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const NAV_LINKS = [
     { label: t(LABELS.nav.about), href: "#about" },
     { label: t(LABELS.nav.experience), href: "#experience" },
@@ -18,19 +15,16 @@ export default function Navbar() {
     { label: t(LABELS.nav.repos), href: "#repos" },
     { label: t(LABELS.nav.contact), href: "#contact" },
   ];
-
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
-
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
-
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -42,7 +36,6 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      {/* Animated top line indicator */}
       {scrolled && (
         <motion.div 
           layoutId="navbar-glow"
@@ -51,10 +44,8 @@ export default function Navbar() {
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
       )}
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <motion.a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
@@ -62,14 +53,11 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {/* Logo glow on hover */}
             <span className="absolute -inset-2 bg-indigo-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10 text-white">Jonathan</span>
+            <span className="relative z-10 text-white">Jonathan </span>
             <span className="relative z-10 text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]">Vargas</span>
             <span className="relative z-10 text-emerald-400 animate-pulse">.</span>
           </motion.a>
-
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <a
@@ -81,8 +69,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-
-            {/* Language Toggle */}
             <button
               id="lang-toggle"
               onClick={() => setLang(lang === "en" ? "es" : "en")}
@@ -91,7 +77,6 @@ export default function Navbar() {
             >
               {lang === "en" ? "ES" : "EN"}
             </button>
-
             <a
               href="https://github.com/LfJohnVo"
               target="_blank"
@@ -101,8 +86,6 @@ export default function Navbar() {
               GitHub
             </a>
           </nav>
-
-          {/* Mobile: lang toggle + hamburger */}
           <div className="flex items-center gap-2 md:hidden">
             <button
               id="lang-toggle-mobile"
@@ -127,8 +110,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
