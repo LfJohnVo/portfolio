@@ -7,6 +7,7 @@ import TechStack from "@/features/tech-stack/TechStack";
 import Experience from "@/features/experience/Experience";
 import GitHubRepos from "@/features/github/GitHubRepos";
 import GitHubStats from "@/features/stats/GitHubStats";
+import GitHubCommandCenter from "@/features/command-center/GitHubCommandCenter";
 import Contact from "@/features/contact/Contact";
 const GITHUB_USER = "LfJohnVo";
 async function getGitHubData(): Promise<{
@@ -47,6 +48,7 @@ export default async function HomePage() {
     <main>
       <Navbar />
       <Hero />
+      <GitHubCommandCenter />
       <GitHubStats user={user} totalStars={totalStars} topLanguages={topLanguages} />
       <About />
       <Experience />
